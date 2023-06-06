@@ -44,6 +44,14 @@ function App() {
     setContacts(toSortNumber);
   };
 
+  const removeContact = id => {
+    const toDelete = [...firstContacts];
+    const withDeletedContact = toDelete.filter(
+      contact => id !== contact.id
+    );
+    setContacts(withDeletedContact);
+  };
+
   return (
     <div className='App'>
       <h2>IronContacts</h2>
@@ -87,7 +95,13 @@ function App() {
                   {contact.wonEmmy ? '🏆' : ''}
                 </td>
                 <td>
-                  <button>Delete</button>
+                  <button
+                    onClick={() =>
+                      removeContact(contact.id)
+                    }
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             );
